@@ -1,0 +1,220 @@
+/*
+.checkbox-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.checkbox-option {
+    
+    margin-bottom: 20px; /* Ajoute un espace entre chaque option */
+/*  margin-right: 100px;
+    padding: 8px; /* Ajoute un espace intérieur aux options */
+  /*  border: 1px solid black; /* Ajoute une bordure grise */
+  /*  border-radius: 5px; /* Ajoute un arrondi aux coins */
+  /*  background-color: #f9f9f9; /* Ajoute une couleur de fond */
+   /* text-align: center; /* Centrage horizontal */
+   /* margin: 30px; /* Centrage vertical */
+  /*  cursor: pointer; /* Change le curseur au survol */
+/*}
+
+.options-container {
+    background-color: #dbd6d6; /* Ajoute une couleur de fond */
+    /*padding: 10px; /* Ajoute un peu d'espace intérieur */
+   /* border-radius: 10px; /* Ajoute un arrondi aux coins */
+   /* border: 1px solid black;
+}
+
+
+
+/* Style pour le bouton "Sélectionner un fichier" */
+/*button {
+    padding: 15px 20px; /* Ajoute un peu d'espace intérieur au bouton */
+  /*  background-color: #dbd6d6;; /* Couleur de fond bleue */
+ /*   color: #0e0d0d; /* Couleur du texte blanc */
+   /* border: 1px solid black; 
+    border-radius: 5px; /* Ajoute un arrondi aux coins */
+ /*   cursor: pointer; /* Change le curseur au survol */
+  /*  font-size: 16px; /* Taille de police */
+/*}
+/* Style pour le paragraphe où le nom du fichier sélectionné est affiché */
+/*#fileName {
+    font-size: 20px; /* Taille de police */
+   /* margin-top: 10px; /* Ajoute un peu d'espace en haut */
+/*}
+
+/* Style pour l'image sélectionnée */
+/*#imageDisplay {
+    margin-top: 20px; /* Ajoute un peu d'espace en haut */
+  /*  border: 1px solid black; /* Ajoute une bordure grise */
+   /* border-radius: 5px; /* Ajoute un arrondi aux coins */
+   /* box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+/*}
+
+/*.cadre {
+    border: 1px solid #0b0b0b; /* Ajoute une bordure grise */
+    /*padding: 20px; /* Ajoute un espace intérieur */
+    /*width: 300px; /* Définit la largeur du cadre */
+    /*margin-bottom: 20px; /* Ajoute un espace en bas */
+/*}
+
+/*.form{
+   margin-top:250px; 
+   float: right; /* Aligne le bouton à gauche */
+/*}
+/*.v{
+    margin-left: 80px;
+}
+
+/*input[type="search"] {
+    width: calc(100% - 22px); /* Définit la largeur des champs input, moins la largeur de la bordure */
+   /* padding: 5px; /* Ajoute un peu d'espace intérieur aux champs input */
+    /*margin-bottom: 10px; /* Ajoute un espace en bas des champs input */
+    /*box-sizing: border-box; /* Garantit que la largeur inclut la bordure */
+/*}
+
+/*.button {
+    margin-left: 120px;
+}
+//
+
+*/
+.checkbox-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    
+}
+
+.checkbox-option {
+    
+    margin-bottom: 20px; /* Ajoute un espace entre chaque option */
+    margin-right: 100px;
+    padding: 8px; /* Ajoute un espace intérieur aux options */
+    border: 1px solid black; /* Ajoute une bordure grise */
+    border-radius: 1px; /* Ajoute un arrondi aux coins */
+    background-color: #f9f9f9; /* Ajoute une couleur de fond */
+    text-align: center; /* Centrage horizontal */
+    margin: 15px; /* Centrage vertical */
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+.options-container {
+    background-color: #dbd6d6; /* Ajoute une couleur de fond */
+    padding: 5px; /* Ajoute un peu d'espace intérieur */
+    border-radius: 10px; /* Ajoute un arrondi aux coins */
+    border: 1px solid black;
+    margin-bottom: 20px;/*espace entre chaque block*/
+}
+
+
+
+/* Style pour le bouton "Sélectionner un fichier" */
+.btn {
+    padding: 15px 20px; /* Ajoute un peu d'espace intérieur au bouton */
+    border: 1px solid black; 
+    border-radius: 5px; /* Ajoute un arrondi aux coins */
+    cursor: pointer; /* Change le curseur au survol */
+    margin:  10px; /* Ajoute un peu d'espace entre les boutons */
+    background-color: rgb(108, 108, 207);
+    
+}
+/* Style pour le paragraphe où le nom du fichier sélectionné est affiché */
+#fileName {
+    font-size: 15px; /* Taille de police */
+    margin-top: 10px; /* Ajoute un peu d'espace en haut */
+    margin-left:5px;
+    font-weight: bold;
+    color: #333; /* Change color as needed */
+    
+}
+
+/* Style pour l'image sélectionnée */
+#imageDisplay {
+    margin-top: 20px; /* Ajoute un peu d'espace en haut */
+    border: 1px solid black; /* Ajoute une bordure grise */
+    border-radius: 5px; /* Ajoute un arrondi aux coins */
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); /* Ajoute une ombre légère */
+    max-width: 100%;
+    max-height: 400px; /* Change this value to your desired height */
+    margin-left: 500px;
+      
+}
+
+
+
+/*.form{
+   background-color: #dbd6d6; 
+   padding: 10px; 
+   border-radius: 5px; 
+   border: 1px solid black;
+   margin-bottom: 20px;
+   margin-right: -7 0px;
+}*/
+
+
+input[type="search"] {
+    width: calc(50% - 22px); /* Définit la largeur des champs input, moins la largeur de la bordure */
+    padding: 5px; /* Ajoute un peu d'espace intérieur aux champs input */
+    margin-bottom: 5px; /* Ajoute un espace en bas des champs input */
+    margin-left: 30px;
+    
+}
+
+
+.button {
+    margin-left: 120px;
+}
+
+/*#formOption1 {
+    position: absolute; 
+    top: 20px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+}*/
+
+
+.v {
+    margin-left: 50px;
+}
+
+
+
+.form {
+    border: 1px solid #171111;
+    background-color: #d8a8a8;
+    padding: 10px;
+    margin-top: 10px;
+    display: none; /* Masquer les formulaires par défaut */
+    max-width: 300px; /* Ajouter une largeur maximale */
+    margin-left: auto; /* Centrer horizontalement */
+    margin-right: auto;
+    
+}
+#B{
+    margin-left: 10px;
+}
+#A{
+    margin-left: 10px;
+}
+#C{
+    margin-left: 10px;
+}
+#D{
+    margin-left: 10px;
+}
+#E{
+    margin-left: 10px;
+}
+#F{
+    margin-left: 10px;
+}
+#G{
+    margin-left: 10px;
+}
+#H{
+    margin-left: 10px;
+}
+#I{
+    margin-left: 10px;
+}
