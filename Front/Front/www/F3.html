@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- Coding by Mr Code Box -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration or Signup form | Mr Code Box</title>
+    <link rel="stylesheet" href="formulaire.css">
+   </head>
+   <body>
+    <body>
+      <div class="wrapper">
+        <h2>Registration</h2>
+        <form action="#">
+          <div class="input-box">
+            <input type="text" placeholder="Entrer la valeur" required>
+          </div>
+          <div class="input-box">
+            <input type="text" placeholder="Entrer la valeur" required>
+          </div>
+          <div class="input-box button">
+            <input type="Submit" value="Envoyer">
+          </div>
+        </form>
+      </div>
+      <div>
+        <button class="btn" type="button" onclick="gotoLink(this)" value="index.html">Retourner a la page d'acceuille pour voir les résultat</button>
+       </div>
+
+    <script>
+        function gotoLink(link) {
+            window.location.href = link.value;
+        }
+    </script>
+    </body>
+    </html>
