@@ -1,6 +1,6 @@
-# Load R packages
 library(shiny)
 library(shinythemes)
+library(shinyWidgets)
 library(lidaRtRee)
 library(rgl)
 library(terra)
@@ -14,15 +14,21 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                            sidebarLayout(
                              sidebarPanel(
                                fileInput("file", "Sélectionner le fichier LAS"),
-                               actionButton("load_las", "Visualiser LAS")
+                               actionButton("load_las", "Visualiser LAS"),
+                               selectInput("filtering", "Techniques de filtrage :", 
+                                           choices = c("Aucune","HNT", "CHM", "TDM"), selected = "HNT"),
+                               selectInput("segmentation", "Techniques de segmentation de données :", 
+                                           choices = c("Aucune","Segmentation daplont", "Segmentation silva", "CNN"), selected = "Segmentation daplont"),
+                               selectInput("normalization", "Techniques de normalisation :", 
+                                           choices = c("Aucune","Homogène", "Aléatoire", "Elévation"), selected = "Homogène"),
+                               actionButton("update", "Appliquer")
                              ),
                              mainPanel(
-                               tabsetPanel(
-                                 tabPanel("CHM", plotOutput("chm_plot")),
-                                 tabPanel("Segments", plotOutput("segments_plot")),
-                                 tabPanel("Apices", plotOutput("apices_plot")),
-                                 tabPanel("Projection 3D", rglwidgetOutput("rgl_widget"))
-                               )
+                               plotOutput("chm_plot"),
+                               plotOutput("segments_plot"),
+                               plotOutput("apices_plot"),
+                               rglwidgetOutput("rgl_widget"),
+                               plotOutput("imagePlot")
                              )
                            )
                   ), # tabPanel
@@ -32,7 +38,7 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
 ) # fluidPage
 
 # Define server function  
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   observeEvent(input$load_las, {
     req(input$file)
@@ -67,6 +73,28 @@ server <- function(input, output) {
     output$rgl_widget <- renderRglwidget({
       rglwidget(rgl::plot3d(las))
     })
+  })
+  
+  output$imagePlot <- renderPlot({
+    # Récupérer les valeurs sélectionnées par l'utilisateur
+    filtering <- input$filtering
+    segmentation <- input$segmentation
+    normalization <- input$normalization
+    
+    # Utiliser les valeurs sélectionnées pour afficher l'image correspondante
+    # Ici, on suppose que vous avez déjà des fonctions ou des méthodes pour visualiser les images
+    # Utilisez les valeurs de filtering, segmentation et normalization pour appeler ces fonctions/méthodes avec les paramètres appropriés
+    # Par exemple :
+    # image <- visualiser_image(filtering, segmentation, normalization)
+    # plot(image)
+    # Remplacez visualiser_image() par vos fonctions/méthodes réelles pour charger et visualiser les images
+    # Assurez-vous que vos fonctions/méthodes prennent les options de filtrage, segmentation et normalisation comme paramètres
+    
+    # Pour cet exemple, nous affichons juste un message indiquant les options sélectionnées
+    message <- paste("Technique de filtrage:", filtering, "\n",
+                     "Technique de segmentation:", segmentation, "\n",
+                     "Technique de normalisation:", normalization)
+    cat(message)
   })
 } # server
 
