@@ -8,11 +8,11 @@ ui <- fluidPage(
   sidebarLayout(
     sidebarPanel(
       selectInput("filtering", "Techniques de filtrage :", 
-                  choices = c("HNT", "CHM", "TDM"), selected = "HNT"),
+                  choices = c("Aucune","HNT", "CHM", "TDM"), selected = "Aucune"),
       selectInput("segmentation", "Techniques de segmentation de données :", 
-                  choices = c("Segmentation daplont", "Segmentation silva", "CNN"), selected = "Segmentation daplont"),
+                  choices = c("Aucune","Segmentation daplont", "Segmentation silva", "CNN"), selected = "Aucune"),
       selectInput("normalization", "Techniques de normalisation :", 
-                  choices = c("Homogène", "Aléatoire", "Elévation"), selected = "Homogène"),
+                  choices = c("Aucune","Homogène", "Aléatoire", "Elévation"), selected = "Aucune"),
       actionButton("update", "Mettre à jour")
     ),
     
