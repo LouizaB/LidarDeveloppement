@@ -1,5 +1,6 @@
 library(shiny)
 library(terra)
+library(lidR)
 
 # Define UI
 ui <- fluidPage(
@@ -24,14 +25,28 @@ server <- function(input, output, session) {
   
   observeEvent(input$show, {
     inFile <- input$file
+    print(inFile) # Debugging
     if (is.null(inFile)) {
+      print("File is null") # Debugging
       return(NULL)
     }
-    las <- readLAS(inFile$datapath)
+    print("Reading LAS file") # Debugging
+    las <- lidR::readLAS(inFile$datapath)
+    
+    # Define output_raster object
+    output_raster <- terra::rast(resolution = 0.5,
+                                 xmin = min(las$X),
+                                 xmax = max(las$X),
+                                 ymin = min(las$Y),
+                                 ymax = max(las$Y),
+                                 crs = st_crs(las)$wkt)
     
     # Compute DTM, DSM, and CHM
+    print("Computing DTM") # Debugging
     dtm <- rasterize_terrain(las, output_raster, tin())
+    print("Computing DSM") # Debugging
     dsm <- rasterize_canopy(las, output_raster, p2r())
+    print("Computing CHM") # Debugging
     chm <- dsm - dtm
     
     # Plot selected image
@@ -43,6 +58,5 @@ server <- function(input, output, session) {
     })
   })
 }
-
 # Run the application
 shinyApp(ui = ui, server = server)
