@@ -7,12 +7,32 @@ library(terra)
 library(sf)
 library(ade4)
 library(ggplot2)
-
+# Define UI
 # Define UI
 ui <- fluidPage(theme = shinytheme("cerulean"),
+                #tags$head(
+                #   tags$style(
+                #     HTML(
+                #       "
+                #       .nav-tabs > li > a {
+                #         padding: 10px 15px; /* Ajuster le rembourrage des onglets */
+                #         width: 150px; /* Largeur fixe des onglets */
+                #         text-align: center; /* Centrer le texte des onglets */
+                #       }
+                #       .tab-content {
+                #         height: 600px; /* Hauteur fixe du contenu des onglets */
+                #       }
+                #       .sidebarPanel {
+                #         width: 300px; /* Largeur fixe du sidebarPanel */
+                #       }
+                #       "
+                #     )
+                #   )
+                # ),
                 navbarPage(
                   "Analyse des données LiDAR",
                   tabPanel("Visualisation LAS",
+                           titlePanel("Visualisation"),
                            sidebarLayout(
                              sidebarPanel(
                                fileInput("file", "Sélectionner le fichier LAS"),
@@ -27,7 +47,7 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                            )
                   ),
                   
-                  tabPanel("Positionnement des arbres par types",
+                  tabPanel("Position",
                            mainPanel(
                              # Paste the UI code here
                              titlePanel("Tree Inventory Analysis"),
@@ -46,10 +66,13 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                                  plotOutput("rasterPlot"),
                                  uiOutput("additionalPlot")
                                )
-                             )
+                             ),
+                             # Ajuster la largeur du sidebarPanel
+                             style = "width: 900px;"
                            )
                   ),
-                  tabPanel("Techniques de filtrage",
+                  tabPanel("Technique de filtrage",
+                           titlePanel("Filtrage"),
                            sidebarLayout(
                              sidebarPanel(
                                fileInput("file", "Choisir le fichier Laz"),
