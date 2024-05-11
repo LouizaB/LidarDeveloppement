@@ -1,6 +1,10 @@
 library(shiny)
 library(lidaRtRee)
 library(terra)
+library(shinythemes)
+library(rgl)
+library(lidR)
+library(ggplot2)
 
 # Define UI
 ui <- fluidPage(theme = shinytheme("cerulean"),
