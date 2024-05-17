@@ -73,7 +73,7 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                              sidebarPanel(
                                fileInput("file_filtrage", "Choose LAS file"),
                                selectInput("algorithm_filtrage", "Choose Algorithm",
-                                           choices = c("p2r", "p2r(subcircle)", "tin", "lidR::pitfree")),
+                                           choices = c("p2r", "tin", "lidR::pitfree")),
                                sliderInput("resolution_filtrage", "Resolution (m)", min = 0.1, max = 1, value = 0.5),
                                conditionalPanel(
                                  condition = "input.algorithm_filtrage == 'p2r(subcircle)'",
