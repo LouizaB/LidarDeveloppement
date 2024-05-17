@@ -73,7 +73,7 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                              sidebarPanel(
                                fileInput("file_filtrage", "Choose LAS file"),
                                selectInput("algorithm_filtrage", "Choose Algorithm",
-                                           choices = c("p2r", "p2r(subcircle)", "dsmtin", "lidR::pitfree")),
+                                           choices = c("p2r", "p2r(subcircle)", "tin", "lidR::pitfree")),
                                sliderInput("resolution_filtrage", "Resolution (m)", min = 0.1, max = 1, value = 0.5),
                                conditionalPanel(
                                  condition = "input.algorithm_filtrage == 'p2r(subcircle)'",
@@ -109,25 +109,6 @@ ui <- fluidPage(theme = shinytheme("cerulean"),
                   ),
                   
                   
-                  tabPanel("Coloriage",
-                           mainPanel(
-                             imageOutput("test")
-                           )
-                  ),
-                  
-                  # tabPanel("Segmentation",
-                  #          titlePanel("Tree Segmentation"),
-                  #          sidebarLayout(
-                  #            sidebarPanel(
-                  #              fileInput("file_segmentation", "Choose LAS file")
-                  #            ),
-                  #            mainPanel(
-                  #              plotOutput("preprocessed_chm"),
-                  #              plotOutput("selected_local_maxima"),
-                  #              plotOutput("segmented_trees")
-                  #            )
-                  #          )
-                  # ),
                   
                   tabPanel("Segmentation", 
                            sidebarLayout(
@@ -160,7 +141,7 @@ server <- function(input, output, session) {
                                            algorithm = switch(input$algorithm_filtrage,
                                                               "p2r" = p2r(),
                                                               "p2r(subcircle)" = p2r(subcircle = input$subcircle_filtrage),
-                                                              "dsmtin" = dsmtin(max_edge = input$max_edge_filtrage),
+                                                              "tin" = dsmtin(max_edge = input$max_edge_filtrage),
                                                               "lidR::pitfree" = pitfree(max_edge = c(input$param1_filtrage, input$param2_filtrage))))
         plot(chm, main = "Canopy Height Model")
       }
@@ -172,26 +153,7 @@ server <- function(input, output, session) {
   observeEvent(input$load_las, {
     req(input$file)
     las <- lidR::readLAS(input$file$datapath)
-    chm <- lidR::rasterize_canopy(las, res = 0.5)
-    segms <- lidaRtRee::tree_segmentation(chm)
-    apices <- lidaRtRee::tree_extraction(segms)
-    output$chm_plot <- renderPlot({
-      plot(chm, main = "Canopy Height Model")
-    })
-    output$segments_plot <- renderPlot({
-      plot(segms$segments_id, main = "Segments")
-    })
-    output$apices_plot <- renderPlot({
-      plot(apices$meanI, main = "Apices")
-    })
-    output$rgl_widget <- renderRglwidget({
-      rglwidget(rgl::plot3d(las))
-    })
-    output$coloredImage <- renderImage({
-      img <- readPNG("./plot_before_coloring.png")
-      list(src = img, contentType = "image/png", width = "100%")
-    }, deleteFile = FALSE)
-  })
+    plot(las)})
   ###########
   # Partie pour le filtrage
   observeEvent(input$file_filtrage, {
@@ -207,9 +169,9 @@ server <- function(input, output, session) {
                                 algorithm = switch(input$algorithm_filtrage,
                                                    "p2r" = p2r(),
                                                    "p2r(subcircle)" = p2r(subcircle = input$subcircle_filtrage),
-                                                   "dsmtin" = dsmtin(max_edge = input$max_edge_filtrage),
+                                                   "tin" = dsmtin(max_edge = input$max_edge_filtrage),
                                                    "lidR::pitfree" = pitfree(max_edge = c(input$param1_filtrage, input$param2_filtrage))))
-        plot(chm, main = "Canopy Height Model")
+        plot(chm, main = "DSM")
       }
     })
   })
